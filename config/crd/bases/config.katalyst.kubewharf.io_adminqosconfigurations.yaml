@@ -1002,11 +1002,15 @@ spec:
                                 format: int64
                                 type: integer
                               vmExtFragThreshold:
-                                description: VMExtFragThreshold sets /proc/sys/vm/extfrag_threshold
+                                description: |-
+                                  VMExtFragThreshold sets /proc/sys/vm/extfrag_threshold
+                                  0 means do not change.
                                 format: int64
                                 type: integer
                               vmWatermarkBoostFactor:
-                                description: VMWatermarkBoostFactor sets /proc/sys/vm/watermark_boost_factor
+                                description: |-
+                                  VMWatermarkBoostFactor sets /proc/sys/vm/watermark_boost_factor
+                                  0 means do not change.
                                 format: int64
                                 type: integer
                               vmWatermarkScaleFactor:

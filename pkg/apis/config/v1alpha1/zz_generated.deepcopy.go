@@ -726,13 +726,23 @@ func (in *CPUPressureEvictionConfig) DeepCopyInto(out *CPUPressureEvictionConfig
 	}
 	if in.LoadUpperBoundRatio != nil {
 		in, out := &in.LoadUpperBoundRatio, &out.LoadUpperBoundRatio
+		*out = new(float64)
+		**out = **in
+	}
+	if in.LoadLowerBoundRatio != nil {
+		in, out := &in.LoadLowerBoundRatio, &out.LoadLowerBoundRatio
+		*out = new(float64)
+		**out = **in
+	}
+	if in.UpperBoundRatioMap != nil {
+		in, out := &in.UpperBoundRatioMap, &out.UpperBoundRatioMap
 		*out = make(map[string]string, len(*in))
 		for key, val := range *in {
 			(*out)[key] = val
 		}
 	}
-	if in.LoadLowerBoundRatio != nil {
-		in, out := &in.LoadLowerBoundRatio, &out.LoadLowerBoundRatio
+	if in.LowerBoundRatioMap != nil {
+		in, out := &in.LowerBoundRatioMap, &out.LowerBoundRatioMap
 		*out = make(map[string]string, len(*in))
 		for key, val := range *in {
 			(*out)[key] = val
