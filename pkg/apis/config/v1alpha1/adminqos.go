@@ -586,17 +586,27 @@ type CPUPressureEvictionConfig struct {
 	// +optional
 	EnableLoadEviction *bool `json:"enableLoadEviction,omitempty"`
 
-	// LoadUpperBoundRatio maps translated pool name prefixes to positive finite ratios encoded as strings.
-	// The longest prefix wins; "default" applies to unmatched pools and falls back to 20 when absent.
+	// LoadUpperBoundRatio is the fallback hard load threshold ratio for CPU pools.
+	// +kubebuilder:validation:Minimum=1
+	// +optional
+	LoadUpperBoundRatio *float64 `json:"loadUpperBoundRatio,omitempty"`
+
+	// LoadLowerBoundRatio is the fallback soft load threshold ratio for CPU pools.
+	// +kubebuilder:validation:Minimum=0
+	// +optional
+	LoadLowerBoundRatio *float64 `json:"loadLowerBoundRatio,omitempty"`
+
+	// UpperBoundRatioMap maps translated pool name prefixes to positive finite ratios encoded as strings.
+	// The longest prefix wins; "default" applies to unmatched pools, then LoadUpperBoundRatio is used.
 	// Pool size times the ratio is the hard load threshold for eviction.
 	// +optional
-	LoadUpperBoundRatio map[string]string `json:"loadUpperBoundRatio,omitempty"`
+	UpperBoundRatioMap map[string]string `json:"upperBoundRatioMap,omitempty"`
 
-	// LoadLowerBoundRatio maps translated pool name prefixes to positive finite ratios encoded as strings.
-	// The longest prefix wins; "default" applies to unmatched pools and falls back to 10 when absent.
+	// LowerBoundRatioMap maps translated pool name prefixes to positive finite ratios encoded as strings.
+	// The longest prefix wins; "default" applies to unmatched pools, then LoadLowerBoundRatio is used.
 	// Pool size times the ratio is the soft load threshold for node tainting.
 	// +optional
-	LoadLowerBoundRatio map[string]string `json:"loadLowerBoundRatio,omitempty"`
+	LowerBoundRatioMap map[string]string `json:"lowerBoundRatioMap,omitempty"`
 
 	// LoadThresholdMetPercentage is the percentage of the number of times the load
 	// over the upper bound to the total number of times the load is measured, if the
