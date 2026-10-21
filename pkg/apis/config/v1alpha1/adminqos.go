@@ -596,18 +596,6 @@ type CPUPressureEvictionConfig struct {
 	// +optional
 	LoadLowerBoundRatio *float64 `json:"loadLowerBoundRatio,omitempty"`
 
-	// UpperBoundRatioMap maps translated pool name prefixes to positive finite ratios.
-	// The longest prefix wins; "default" applies to unmatched pools, then LoadUpperBoundRatio is used.
-	// Pool size times the ratio is the hard load threshold for eviction.
-	// +optional
-	UpperBoundRatioMap map[string]float64 `json:"upperBoundRatioMap,omitempty"`
-
-	// LowerBoundRatioMap maps translated pool name prefixes to positive finite ratios.
-	// The longest prefix wins; "default" applies to unmatched pools, then LoadLowerBoundRatio is used.
-	// Pool size times the ratio is the soft load threshold for node tainting.
-	// +optional
-	LowerBoundRatioMap map[string]float64 `json:"lowerBoundRatioMap,omitempty"`
-
 	// LoadThresholdMetPercentage is the percentage of the number of times the load
 	// over the upper bound to the total number of times the load is measured, if the
 	// percentage is greater than the load threshold met percentage, the eviction or
